@@ -9,24 +9,24 @@ body {
 @layer base {
   :root {
     --background: 0 0% 100%;
-    --background-70: 210 2% 95%;
-    --background-80: 0 11% 95%;
-    --background-90: 210 2% 75%;
-    --background-25: 220 7% 8% 0.25;
-    --background-20: 0 11% 95%;
+    --background-70:210 2% 75%;
+    --background-80:0 11% 95%;
+    --background-90:210 2% 75%;
+    --background-25:220 7% 8% 0.25;
+    --background-20:0 11% 95%;
     --foreground: 240 10% 3.9%;
     --card: 0 0% 100%;
     --card-foreground: 240 10% 3.9%;
     --popover: 0 0% 100%;
     --popover-foreground: 240 10% 3.9%;
     --primary: 240 5.9% 10%;
-    --primary-10: 0 0% 98%;
-    --primary-20: 0 11% 95% 1;
-    --primary-80: 0 11% 95%;
-    --primary-90: 0 0% 100% 1;
+    --primary-10:0 0% 98%;
+    --primary-20:0 11% 95% 1;
+    --primary-80:0 11% 95%;
+    --primary-90:0 0% 100% 1;
     --primary-foreground: 0 0% 98%;
-    --secondary: 220 3% 35%;
-    --secondary-90: 228 7% 14%;
+    --secondary:220 3% 35%;
+    --secondary-90:228 7% 14%;
     --secondary-foreground: 240 5.9% 10%;
     --muted: 240 4.8% 95.9%;
     --muted-foreground: 240 3.8% 46.1%;
@@ -51,29 +51,30 @@ body {
     --sidebar-accent-foreground: 240 5.9% 10%;
     --sidebar-border: 220 13% 91%;
     --sidebar-ring: 217.2 91.2% 59.8%;
-    --cretive-ai-gradient: linear-gradient(180deg, #d55c7a 0%, #f6bc66 100%);
+    --creative-ai-gradient:linear-gradient(180deg, #F55C7A 0%, #F6BC66 100%);
+    
   }
   .dark {
     --background: 240 10% 3.9%;
-    --background-primary: 220 7% 8% 1;
-    --background-90: 210 2% 75%;
-    --background-80: 228 7% 14%;
-    --background-70: 220 3% 35%;
-    --background-25: 220 3% 95% 0.25;
-    --background-20: 220 7% 17%;
+    --background-primary:220 7% 8% 1
+    --background-90:210 2% 75%;
+    --background-80:228 7% 14%;
+    --background-70:220 3% 35%;
+    --background-25:0 8% 95% 0.25;
+    --background-20:220 7% 17%;
     --foreground: 0 0% 98%;
-    --primary: 0 11% 95%;
-    --primary-10: 228 7% 14%;
-    --primary-20: 220 7% 17%;
-    --primary-80: 228 7% 14%;
-    --primary-90: 225 7% 11%;
-    --primary-foreground: 240 5.9% 10%;
     --card: 240 10% 3.9%;
     --card-foreground: 0 0% 98%;
     --popover: 240 10% 3.9%;
     --popover-foreground: 0 0% 98%;
-    --secondary: 225 2% 63%;
-    --secondary-90: 210 2% 75%;
+    --primary: 0 11% 95%;
+    --primary-10:228 7% 14%;
+    --primary-20:220 7% 17%;
+    --primary-80:228 7% 14%;
+    --primary-90:225 7% 11%;
+    --primary-foreground: 240 5.9% 10%;
+    --secondary: 225 2% 63%; 
+    --secondary-90:210 2% 75%;
     --secondary-foreground: 0 0% 98%;
     --muted: 240 3.7% 15.9%;
     --muted-foreground: 240 5% 64.9%;
@@ -109,9 +110,10 @@ body {
   }
 }
 
-.text-vivid {
-  background: linear-gradient(180deg, #f55c7a 0%, #f6bc66 100%);
+.text-vivid{
+  background: linear-gradient(180deg, #F55C7A 0%, #F6BC66 100%);
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
+
