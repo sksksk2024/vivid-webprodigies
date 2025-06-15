@@ -18,7 +18,7 @@ import CardList from '../Common/CardList';
 import usePromptStore from '@/store/usePromptStore';
 import RecentPrompts from './RecentPrompts';
 import { toast } from 'sonner';
-import { generateCreativePrompt } from '@/actions/chatgpt';
+import { generateCreativePrompt } from '@/actions/openai';
 import { v4 as uuid, v4 } from 'uuid';
 import { OutlineCard } from '@/lib/types';
 import { createProject } from '@/actions/project';
