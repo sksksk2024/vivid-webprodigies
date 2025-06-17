@@ -1,11 +1,22 @@
+'use client';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { Skeleton } from '@/components/ui/skeleton';
-import { LayoutSlides } from '@/lib/types';
+import { LayoutSlides, Slide } from '@/lib/types';
 import { cn } from '@/lib/utils';
 import { useSlideStore } from '@/store/useSlideStore';
-import React, { useEffect, useRef, useState } from 'react';
-import { useDrop } from 'react-dnd';
+import { isDragging } from 'motion-dom';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
+import { useDrag, useDrop } from 'react-dnd';
 import { v4 as uuid } from 'uuid';
+import { MasterRecursiveComponent } from './MasterRecursiveComponent';
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from '@/components/ui/popover';
+import { EllipsisVertical, Trash } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import { updateSlides } from '@/actions/project';
 
 interface DropZoneProps {
   index: number;
@@ -62,6 +73,94 @@ export const DropZone: React.FC<DropZoneProps> = ({
   );
 };
 
+interface DraggableSlideProps {
+  slide: Slide;
+  index: number;
+  moveSlide: (dragIndex: number, hoverIndex: number) => void;
+  handleDelete: (id: string) => void;
+  isEditable: boolean;
+}
+
+export const DraggableSlide: React.FC<DraggableSlideProps> = ({
+  slide,
+  index,
+  moveSlide,
+  handleDelete,
+  isEditable,
+}) => {
+  const ref = useRef(null);
+  const { currentSlide, setCurrentSlide, currentTheme, updateContentItem } =
+    useSlideStore();
+
+  const [{ isDragging }, drag] = useDrag({
+    type: 'SLIDE',
+    item: {
+      index,
+      type: 'SLIDE',
+    },
+    collect: (monitor) => ({
+      isDragging: monitor.isDragging(),
+    }),
+    canDrag: isEditable,
+  });
+
+  const handleContentChange = (
+    contentId: string,
+    newContent: string | string[] | string[][]
+  ) => {
+    console.log('Content changed', slide, contentId, newContent);
+    if (isEditable) {
+      updateContentItem(slide.id, contentId, newContent);
+    }
+  };
+
+  return (
+    <div
+      ref={ref}
+      className={cn(
+        'w-full rounded-lg shadow-lg relative p-0 min-h-[400px] max-h-[800px]',
+        'shadow-xl transition-shadow duration-300',
+        'flex flex-col',
+        index === currentSlide ? 'ring-2 ring-blue-500 ring-offset-2' : '',
+        slide.className,
+        isDragging ? 'opacity-50' : 'opacity-100'
+      )}
+      style={{
+        backgroundImage: currentTheme.gradientBackground,
+      }}
+      onClick={() => setCurrentSlide(index)}
+    >
+      <div className="h-full w-full flex-grow overflow-hidden">
+        <MasterRecursiveComponent
+          content={slide.content}
+          isPreview={false}
+          slideId={slide.id}
+          isEditable={isEditable}
+          onContentChange={handleContentChange}
+        />
+      </div>
+      {isEditable && (
+        <Popover>
+          <PopoverTrigger asChild className="absolute top-2 left-2">
+            <Button size="sm" variant="outline">
+              <EllipsisVertical className="w-5 h-5" />
+              <span className="sr-only">Slide options</span>
+            </Button>
+          </PopoverTrigger>
+          <PopoverContent className="w-fit p-0">
+            <div className="flex space-x-2">
+              <Button variant="ghost" onClick={() => handleDelete(slide.id)}>
+                <Trash className="w-5 h-5 text-red-500" />
+                <span className="sr-only">Delete slide</span>
+              </Button>
+            </div>
+          </PopoverContent>
+        </Popover>
+      )}
+    </div>
+  );
+};
+
 type Props = {
   isEditable: boolean;
 };
@@ -76,8 +175,10 @@ const Editor = ({ isEditable }: Props) => {
     slides,
     project,
   } = useSlideStore();
-
+  const orderedSlides = getOrderedSlides();
   const slideRefs = useRef<(HTMLDivElement | null)[]>([]);
+
+  const autosaveTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   const [loading, setLoading] = useState(true);
 
@@ -111,6 +212,13 @@ const Editor = ({ isEditable }: Props) => {
     }
   };
 
+  const handleDelete = (id: string) => {
+    if (isEditable) {
+      console.log('Deleting', id);
+      removeSlide(id);
+    }
+  };
+
   useEffect(() => {
     if (slideRefs.current[currentSlide]) {
       slideRefs.current[currentSlide]?.scrollIntoView({
@@ -119,6 +227,39 @@ const Editor = ({ isEditable }: Props) => {
       });
     }
   }, [currentSlide]);
+
+  useEffect(() => {
+    if (typeof window !== 'undefined') setLoading(false);
+  }, []);
+
+  const saveSlides = useCallback(() => {
+    if (isEditable && project) {
+      (async () => {
+        await updateSlides(project.id, JSON.parse(JSON.stringify(slides)));
+      })();
+    }
+  }, [isEditable, project, slides]);
+
+  // Throlling (saving in the most optimal way)
+  useEffect(() => {
+    // if we already have a timer? cancel the timer and then create a new one
+    if (autosaveTimeoutRef.current) {
+      clearTimeout(autosaveTimeoutRef.current);
+    }
+
+    // inside the timer make the save request
+    if (isEditable) {
+      autosaveTimeoutRef.current = setTimeout(() => {
+        saveSlides();
+      }, 2000);
+    }
+
+    return () => {
+      if (autosaveTimeoutRef.current) {
+        clearTimeout(autosaveTimeoutRef.current);
+      }
+    };
+  }, [slides, isEditable, project]);
 
   return (
     <div className="flex-1 flex flex-col h-full max-w-3xl mx-auto px-4 mb-20">
@@ -134,6 +275,17 @@ const Editor = ({ isEditable }: Props) => {
             {isEditable && (
               <DropZone index={0} onDrop={handleDrop} isEditable={isEditable} />
             )}
+            {orderedSlides.map((slide, index) => (
+              <React.Fragment key={slide.id || index}>
+                <DraggableSlide
+                  slide={slide}
+                  index={index}
+                  moveSlide={moveSlide}
+                  handleDelete={handleDelete}
+                  isEditable={isEditable}
+                />
+              </React.Fragment>
+            ))}
           </div>
         </ScrollArea>
       )}
