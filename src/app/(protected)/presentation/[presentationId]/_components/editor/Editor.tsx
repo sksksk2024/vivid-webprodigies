@@ -58,6 +58,7 @@ export const DropZone: React.FC<DropZoneProps> = ({
 
   return (
     <div
+      ref={dropRef as unknown as React.RefObject<HTMLDivElement>}
       className={cn(
         'h-4 my-2 rounded-md transition-all duration-200',
         isOver && canDrop ? 'border-green-500 bg-green-100' : 'border-gray-300',
@@ -103,6 +104,27 @@ export const DraggableSlide: React.FC<DraggableSlideProps> = ({
     }),
     canDrag: isEditable,
   });
+
+  const [_, drop] = useDrop({
+    accept: ['SLIDE', 'LAYOUT'],
+    hover(item: { index: number; type: string }) {
+      if (!ref.current || !isEditable) {
+        return;
+      }
+      const dragIndex = item.index;
+      const hoverIndex = index;
+
+      if (item.type === 'SLIDE') {
+        if (dragIndex === hoverIndex) {
+          return;
+        }
+        moveSlide(dragIndex, hoverIndex);
+        item.index = hoverIndex;
+      }
+    },
+  });
+
+  drag(drop(ref));
 
   const handleContentChange = (
     contentId: string,
@@ -233,6 +255,7 @@ const Editor = ({ isEditable }: Props) => {
   }, []);
 
   const saveSlides = useCallback(() => {
+    // WIP: NEEDED TO ADD REFRESH ICON TO REPRESENT THE SAVING MARK(WHEN TO REFRESH), BASED ON IF IT'S CLICKABLE OR NOT
     if (isEditable && project) {
       (async () => {
         await updateSlides(project.id, JSON.parse(JSON.stringify(slides)));
@@ -240,7 +263,7 @@ const Editor = ({ isEditable }: Props) => {
     }
   }, [isEditable, project, slides]);
 
-  // Throlling (saving in the most optimal way)
+  // Debouncing (saving in the most optimal way)
   useEffect(() => {
     // if we already have a timer? cancel the timer and then create a new one
     if (autosaveTimeoutRef.current) {
@@ -284,6 +307,13 @@ const Editor = ({ isEditable }: Props) => {
                   handleDelete={handleDelete}
                   isEditable={isEditable}
                 />
+                {isEditable && (
+                  <DropZone
+                    index={index + 1}
+                    onDrop={handleDrop}
+                    isEditable={isEditable}
+                  />
+                )}
               </React.Fragment>
             ))}
           </div>

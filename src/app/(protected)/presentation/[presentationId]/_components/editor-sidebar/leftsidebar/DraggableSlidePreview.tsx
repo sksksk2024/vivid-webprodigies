@@ -3,6 +3,7 @@ import { useSlideStore } from '@/store/useSlideStore';
 import React, { useRef } from 'react';
 import { useDrag, useDrop } from 'react-dnd';
 import ScaledPreview from './ScaledPreview';
+import { Slide } from '@/lib/types';
 
 type Props = {
   slide: Slide;
