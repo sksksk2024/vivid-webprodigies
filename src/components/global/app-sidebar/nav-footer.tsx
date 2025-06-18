@@ -10,6 +10,8 @@ import {
   SidebarMenuItem,
 } from '@/components/ui/sidebar';
 import { Button } from '@/components/ui/button';
+import { buySubscription } from '@/actions/lemonSqueezy';
+import { toast } from 'sonner';
 // import { toast } from 'sonner';
 // import { Button } from '@/components/ui/button';
 // import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
@@ -22,6 +24,26 @@ const NavFooter = ({ prismaUser }: { prismaUser: User }) => {
   if (!isLoaded || !isSignedIn) {
     return null; // or redirect to sign-in page
   }
+
+  const handleUpgrading = async () => {
+    setLoading(true);
+
+    try {
+      const res = await buySubscription(prismaUser.id);
+      if (res.status !== 200) {
+        throw new Error('Failed to upgrade subscription');
+      }
+
+      router.push(res.url);
+    } catch (error) {
+      console.error(error);
+      toast.error('Error', {
+        description: 'Something went wrong. Please try later.',
+      });
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <SidebarMenu>
@@ -42,7 +64,7 @@ const NavFooter = ({ prismaUser }: { prismaUser: User }) => {
                   className="w-full border-vivid bg-background-80 hover:bg-background-90 text-primary rounded-full font-bold"
                   variant={'default'}
                   size={'lg'}
-                  // onClick={handleUpgrading}
+                  onClick={handleUpgrading}
                 >
                   {loading ? 'Upgrading...' : 'Upgrade'}
                 </Button>
