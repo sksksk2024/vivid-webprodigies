@@ -24,7 +24,6 @@ const CustomImage = ({
   onContentChange,
   isEditable = true,
 }: Props) => {
-  // WIP: add open ai image
   return (
     <div className={`relative group w-full h-full rounded-lg`}>
       <Image

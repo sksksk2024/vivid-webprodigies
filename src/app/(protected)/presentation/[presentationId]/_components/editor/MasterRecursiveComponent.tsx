@@ -59,8 +59,6 @@ const ContentRenderer: React.FC<MasterRecursiveComponentProps> = React.memo(
       transition: { duration: 0.5 },
     };
 
-    // WIP: complete types
-
     switch (content.type) {
       case 'heading1':
         return (

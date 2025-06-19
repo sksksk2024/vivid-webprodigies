@@ -10,7 +10,6 @@ type Props = {
 };
 
 const ThumbnailPreview = ({ slide, theme }: Props) => {
-  // WIP: add a preview of the slides
   return (
     <div
       className={cn(

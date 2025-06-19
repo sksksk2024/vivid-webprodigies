@@ -92,7 +92,6 @@ const CreativeAI = ({ onBack }: Props) => {
       });
     }
     setIsGenerating(false);
-    // WIP:use open AI and complete this fn
   };
 
   const handleGenerate = async () => {

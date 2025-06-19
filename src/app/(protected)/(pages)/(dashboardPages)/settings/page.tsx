@@ -3,7 +3,7 @@ import React from 'react';
 
 const Page = async () => {
   const checkUser = await onAuthenticateUser();
-  // WIP: Setup the awesome Challenge.
+  // WIP: LS Template in Navbar.tsx.
 
   return (
     <div className="flex flex-col gap-6 relative">
