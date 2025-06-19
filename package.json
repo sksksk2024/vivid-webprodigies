@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev --turbopack",
-    "build": "bun install --ignore-scripts && bun prisma generate && bun run build",
+    "build": "bun exec npx prisma generate && bun run build",
     "start": "next start",
     "lint": "next lint"
   },
