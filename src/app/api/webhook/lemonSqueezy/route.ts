@@ -1,3 +1,6 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-const hello = 2;
-console.log('E');
+import { NextRequest, NextResponse } from 'next/server';
+
+export async function POST(req: NextRequest) {
+  // ...future LS Template logic...
+  return NextResponse.json({ ok: true });
+}
