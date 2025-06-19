@@ -3,9 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev --turbopack",
-    "build": "bun exec npx prisma generate && next build",
-    "start": "next start",
+    "dev": "next dev",
+    "build": "bun install && bunx prisma generate && next build",
+    "start": "next start -p $PORT",
+    "postinstall": "prisma generate",
     "lint": "next lint"
   },
   "dependencies": {
