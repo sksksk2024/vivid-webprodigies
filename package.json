@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev --turbopack",
-    "build": "npm install && prisma generate && next build",
+    "build": "bun install --ignore-scripts && bun prisma generate && bun run build",
     "start": "next start",
     "lint": "next lint"
   },
@@ -47,7 +47,7 @@
     "cmdk": "^1.1.1",
     "date-fns": "^4.1.0",
     "embla-carousel-react": "^8.6.0",
-    "framer-motion": "11.15.0",
+    "framer-motion": "12.18.1",
     "icons": "^1.0.0",
     "input-otp": "^1.4.2",
     "lucide-react": "^0.514.0",
