@@ -28,8 +28,12 @@ type Props = {
 const ScratchPage = ({ onBack }: Props) => {
   const router = useRouter();
   const { setProject } = useSlideStore();
-  const { outlines, resetOutlines, addOutline, addMultipleOutlines } =
-    useScratchStore();
+  const {
+    outlines,
+    resetOutlines,
+    // addOutline,
+    addMultipleOutlines,
+  } = useScratchStore();
   const [editText, setEditText] = useState('');
   const [editingCard, setEditingCard] = useState<string | null>(null);
   const [selectedCard, setSelectedCard] = useState<string | null>(null);
@@ -51,7 +55,7 @@ const ScratchPage = ({ onBack }: Props) => {
       order: outlines.length + 1,
     };
     setEditText('');
-    addOutline(newCard);
+    // addOutline(newCard);
   };
 
   const handleGenerate = async () => {
@@ -151,7 +155,7 @@ const ScratchPage = ({ onBack }: Props) => {
       </motion.div>
       <CardList
         outlines={outlines}
-        addOutline={addOutline}
+        // addOutline={addOutline}
         addMultipleOutlines={addMultipleOutlines}
         editingCard={editingCard}
         selectedCard={selectedCard}
