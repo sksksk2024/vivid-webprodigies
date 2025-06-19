@@ -3,7 +3,7 @@ import { useSlideStore } from '@/store/useSlideStore';
 import { useRouter } from 'next/navigation';
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { v4 } from 'uuid';
+// import { v4 } from 'uuid';
 import { containerVariants, itemVariants } from '@/lib/constants';
 import { ChevronLeft, RotateCcw } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -17,7 +17,7 @@ import {
 } from '@/components/ui/select';
 import { Input } from '@/components/ui/input';
 import CardList from '../Common/CardList';
-import { OutlineCard } from '@/lib/types';
+// import { OutlineCard } from '@/lib/types';
 import { toast } from 'sonner';
 import { createProject } from '@/actions/project';
 
