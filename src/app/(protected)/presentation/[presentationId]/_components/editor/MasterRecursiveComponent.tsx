@@ -39,7 +39,14 @@ type MasterRecursiveComponentProps = {
 
 // @typescript-eslint/no-unused-vars
 const ContentRenderer: React.FC<MasterRecursiveComponentProps> = React.memo(
-  ({ content, onContentChange, slideId, index, isPreview, isEditable }) => {
+  ({
+    content,
+    onContentChange,
+    slideId,
+    // index,
+    isPreview,
+    isEditable,
+  }) => {
     const handleChange = useCallback(
       (e: React.ChangeEvent<HTMLTextAreaElement>) => {
         onContentChange(content.id, e.target.value);

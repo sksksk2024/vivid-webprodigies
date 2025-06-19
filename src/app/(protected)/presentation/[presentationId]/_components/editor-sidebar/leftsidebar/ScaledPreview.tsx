@@ -6,11 +6,15 @@ import { MasterRecursiveComponent } from '../../editor/MasterRecursiveComponent'
 
 type Props = {
   slide: Slide;
-  isActive: boolean;
   index: number;
+  isActive: boolean;
 };
 // @typescript-eslint/no-unused-vars
-const ScaledPreview = ({ slide, isActive, index }: Props) => {
+const ScaledPreview = ({
+  slide,
+  // index,
+  isActive,
+}: Props) => {
   const { currentTheme } = useSlideStore();
 
   return (
