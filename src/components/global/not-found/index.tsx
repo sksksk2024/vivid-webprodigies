@@ -5,8 +5,8 @@ type Props = {};
 
 const NotFound = (props: Props) => {
   return (
-    <div className="flex flex-col min-h-[70vh] w-full justify-center items-center gap-12">
-      <Earth />
+    <div className="flex flex-col min-h-[50vh] w-full justify-center items-center gap-12">
+      <Earth className="w-48 h-48" />
       <div className="flex flex-col items-center justify-center text-center">
         <p className="text-3xl font-semibold text-primary">
           Nothing to see here

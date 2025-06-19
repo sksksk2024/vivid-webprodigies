@@ -19,7 +19,7 @@ import usePromptStore from '@/store/usePromptStore';
 import RecentPrompts from './RecentPrompts';
 import { toast } from 'sonner';
 import { generateCreativePrompt } from '@/actions/openai';
-import { v4 as uuid, v4 } from 'uuid';
+import { v4 as uuid } from 'uuid';
 import { OutlineCard } from '@/lib/types';
 import { createProject } from '@/actions/project';
 import { useSlideStore } from '@/store/useSlideStore';
@@ -117,7 +117,7 @@ const CreativeAI = ({ onBack }: Props) => {
       setProject(res.data);
 
       addPrompt({
-        id: v4(),
+        id: uuid(),
         title: currentAiPrompt || outlines?.[0]?.title,
         outlines: outlines,
         createdAt: new Date().toISOString(),

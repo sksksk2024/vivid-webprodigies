@@ -4,7 +4,6 @@ import { OutlineCard, Theme } from '@/lib/types';
 import { onAuthenticateUser } from './user';
 import { client } from '@/lib/prisma';
 import { JsonValue } from '@prisma/client/runtime/library';
-import { Project } from '@/generated/prisma';
 
 export const getAllProjects = async () => {
   try {

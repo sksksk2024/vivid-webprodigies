@@ -1,8 +1,13 @@
-import Home from 'lucide-react';
+import {
+  Home,
+  LayoutTemplate as Template,
+  Trash,
+  Settings,
+} from 'lucide-react';
 // import { Share } from "@/icons/Share";
-import Template from 'lucide-react';
-import { Trash } from 'lucide-react';
-import { Settings } from 'lucide-react';
+// import Template from 'lucide-react';
+// import { Trash } from 'lucide-react';
+// import { Settings } from 'lucide-react';
 import {
   BlankCard,
   AccentLeft,
