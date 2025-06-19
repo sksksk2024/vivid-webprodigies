@@ -4,16 +4,20 @@ import React from 'react';
 
 type Props = {
   items: string[];
-  onItemClick: (id: string) => void;
+  // onItemClick: (id: string) => void;
   className?: string;
 };
 
-const TableOfContents = ({ items, onItemClick, className }: Props) => {
+const TableOfContents = ({
+  items,
+  // onItemClick,
+  className,
+}: Props) => {
   const { currentTheme } = useSlideStore();
 
   return (
     <nav
-      className={className('space-y-2', className)}
+      className={cn('space-y-2', className)}
       style={{
         color: currentTheme.fontColor,
       }}

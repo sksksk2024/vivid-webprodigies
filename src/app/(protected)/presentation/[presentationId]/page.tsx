@@ -14,9 +14,7 @@ import LayoutPreview from './_components/editor-sidebar/leftsidebar/LayoutPrevie
 import Editor from './_components/editor/Editor';
 import EditorSidebar from './_components/rightSidebar';
 
-type Props = {};
-
-const Page = (props: Props) => {
+const Page = () => {
   const params = useParams(); // !!! To not put a lot of stuff in the type Props(automation)
   const { setTheme } = useTheme();
   const [isLoading, setIsLoading] = useState(true);

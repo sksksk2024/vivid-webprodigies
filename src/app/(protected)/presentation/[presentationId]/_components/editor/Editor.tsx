@@ -4,7 +4,7 @@ import { Skeleton } from '@/components/ui/skeleton';
 import { LayoutSlides, Slide } from '@/lib/types';
 import { cn } from '@/lib/utils';
 import { useSlideStore } from '@/store/useSlideStore';
-import { isDragging } from 'motion-dom';
+// import { isDragging } from 'motion-dom';
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { useDrag, useDrop } from 'react-dnd';
 import { v4 as uuid } from 'uuid';
@@ -105,6 +105,7 @@ export const DraggableSlide: React.FC<DraggableSlideProps> = ({
     canDrag: isEditable,
   });
 
+  // @typescript-eslint/no-unused-vars
   const [_, drop] = useDrop({
     accept: ['SLIDE', 'LAYOUT'],
     hover(item: { index: number; type: string }) {

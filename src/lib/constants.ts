@@ -51,6 +51,7 @@ import {
   Title,
   TodoListComponent,
 } from './slideComponents';
+import { Variants } from 'framer-motion';
 
 export const data = {
   user: {
@@ -115,16 +116,9 @@ export const containerVariants = {
   },
 };
 
-export const itemVariants = {
+export const itemVariants: Variants = {
   hidden: { y: 20, opacity: 0 },
-  visible: {
-    y: 0,
-    opacity: 1,
-    transition: {
-      type: 'spring',
-      stiffness: 100,
-    },
-  },
+  visible: { y: 0, opacity: 1, transition: { type: 'spring', stiffness: 100 } },
 };
 
 export const timeAgo = (timestamp: string) => {

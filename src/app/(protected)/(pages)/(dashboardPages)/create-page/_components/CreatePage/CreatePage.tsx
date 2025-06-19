@@ -5,6 +5,10 @@ import {
   CreatePageCard,
   itemVariants,
 } from '@/lib/constants';
+
+// If you control the definition of containerVariants or itemVariants in '@/lib/constants', ensure their transition.type is a valid Framer Motion type, e.g. 'spring' or 'tween'.
+// Example fix for a variant object (in '@/lib/constants'):
+// visible: { y: 0, opacity: 1, transition: { type: 'spring', stiffness: 100 } }
 import { motion } from 'framer-motion';
 import React, { useEffect } from 'react';
 import RecentPrompts from '../GenerateAI/RecentPrompts';
@@ -28,7 +32,12 @@ const CreatePage = ({ onSelectOption }: Props) => {
       animate="visible"
       className="space-y-8"
     >
-      <motion.div variants={itemVariants} className="text-center space-y-2">
+      <motion.div
+        variants={itemVariants}
+        initial="hidden"
+        animate="visible"
+        className="text-center space-y-2"
+      >
         <h1 className="text-4xl font-bold text-primary">
           How would you like to get started?
         </h1>
@@ -42,6 +51,8 @@ const CreatePage = ({ onSelectOption }: Props) => {
           <motion.div
             key={option.type}
             variants={itemVariants}
+            initial="hidden"
+            animate="visible"
             whileHover={{
               scale: 1.05,
               rotate: 1,

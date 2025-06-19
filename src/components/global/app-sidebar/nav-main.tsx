@@ -9,8 +9,6 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import React from 'react';
 
-type Props = {};
-
 const NavMain = ({
   items,
 }: {
@@ -29,7 +27,7 @@ const NavMain = ({
   return (
     <SidebarGroup className="p-0">
       <SidebarMenu>
-        {items.map((item, idx) => (
+        {items.map((item) => (
           <SidebarMenuItem key={item.title}>
             <SidebarMenuButton
               asChild

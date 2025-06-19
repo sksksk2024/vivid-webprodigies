@@ -9,7 +9,7 @@ type Props = {
   isActive: boolean;
   index: number;
 };
-
+// @typescript-eslint/no-unused-vars
 const ScaledPreview = ({ slide, isActive, index }: Props) => {
   const { currentTheme } = useSlideStore();
 

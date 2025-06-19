@@ -10,7 +10,7 @@ type Props = {
   editingCard: string | null;
   selectedCard: string | null;
   editText: string;
-  addOutline?: (card: OutlineCard) => void;
+  // addOutline?: (card: OutlineCard) => void;
   onEditChange: (value: string) => void;
   onCardSelect: (id: string) => void;
   onCardDoubleClick: (id: string, title: string) => void;
@@ -25,7 +25,7 @@ const CardList = ({
   editingCard,
   selectedCard,
   editText,
-  addOutline,
+  // addOutline,
   onEditChange,
   onCardSelect,
   onCardDoubleClick,
@@ -197,7 +197,7 @@ const CardList = ({
                   onCardUpdate(card.id, editText);
                 }
               }}
-              onCardClick={() => onCardSelect(card.id)}
+              // onCardClick={() => onCardSelect(card.id)}
               onCardDoubleClick={() => onCardDoubleClick(card.id, card.title)}
               onDeleteClick={() => onCardDelete(card.id)}
               dragHandlers={{

@@ -7,15 +7,15 @@ type Props = {
   Icon: React.FC;
   onClick?: () => void;
   isSelected?: boolean;
-  type: string;
-  component?: LayoutSlides;
+  // type: string;
+  // component?: LayoutSlides;
 };
 
 const LayoutPreviewItem = ({
   Icon,
   name,
-  type,
-  component,
+  // type,
+  // component,
   isSelected,
   onClick,
 }: Props) => {

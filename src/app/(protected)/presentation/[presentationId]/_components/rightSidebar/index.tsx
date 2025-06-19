@@ -14,9 +14,7 @@ import ComponentCard from './tabs/components-tab/ComponentPreview';
 import { component } from '@/lib/constants';
 import ThemeChooser from './tabs/ThemeChooser';
 
-type Props = {};
-
-const EditorSidebar = (props: Props) => {
+const EditorSidebar = () => {
   const { currentTheme } = useSlideStore();
   return (
     <div className="fixed top-1/2 right-0 transform -translate-y-1/2 z-10">

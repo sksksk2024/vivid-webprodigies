@@ -1,9 +1,7 @@
 import { Earth } from 'lucide-react';
 import React from 'react';
 
-type Props = {};
-
-const NotFound = (props: Props) => {
+const NotFound = () => {
   return (
     <div className="flex flex-col min-h-[50vh] w-full justify-center items-center gap-12">
       <Earth className="w-48 h-48" />

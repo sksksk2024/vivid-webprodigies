@@ -1,8 +1,6 @@
 import React from 'react';
 
-type Props = {};
-
-const CreatePageSkeleton = (props: Props) => {
+const CreatePageSkeleton = () => {
   return <div>CreatePageSkeleton</div>;
 };
 

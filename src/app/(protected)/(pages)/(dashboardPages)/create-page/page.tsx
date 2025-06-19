@@ -4,9 +4,7 @@ import RenderPage from './_components/RenderPage';
 import { onAuthenticateUser } from '@/actions/user';
 import { redirect } from 'next/navigation';
 
-type Props = {};
-
-const Page = async (props: Props) => {
+const Page = async () => {
   const checkUser = await onAuthenticateUser();
 
   if (!checkUser.user) {

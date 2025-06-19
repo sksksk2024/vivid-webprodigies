@@ -314,17 +314,18 @@ export const MasterRecursiveComponent: React.FC<MasterRecursiveComponentProps> =
         );
       }
 
-      return;
-      <React.Fragment>
-        <ContentRenderer
-          content={content}
-          onContentChange={onContentChange}
-          isPreview={isPreview}
-          isEditable={isEditable}
-          slideId={slideId}
-          index={index}
-        />
-      </React.Fragment>;
+      return (
+        <React.Fragment>
+          <ContentRenderer
+            content={content}
+            onContentChange={onContentChange}
+            isPreview={isPreview}
+            isEditable={isEditable}
+            slideId={slideId}
+            index={index}
+          />
+        </React.Fragment>
+      );
     }
   );
 

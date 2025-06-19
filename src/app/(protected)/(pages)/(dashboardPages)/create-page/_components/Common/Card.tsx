@@ -15,7 +15,7 @@ type Props = {
   onEditChange: (value: string) => void;
   onEditBlur: () => void;
   onEditKeyDown: (e: React.KeyboardEvent) => void;
-  onCardClick: () => void;
+  // onCardClick: () => void;
   onCardDoubleClick: () => void;
   onDeleteClick: () => void;
   dragHandlers: {
@@ -34,7 +34,7 @@ const Card = ({
   onEditChange,
   onEditBlur,
   onEditKeyDown,
-  onCardClick,
+  // onCardClick,
   onCardDoubleClick,
   onDeleteClick,
   dragHandlers,

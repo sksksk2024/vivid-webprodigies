@@ -1,8 +1,8 @@
-import { onAuthenticateUser } from '@/actions/user';
+// import { onAuthenticateUser } from '@/actions/user';
 import React from 'react';
 
 const Page = async () => {
-  const checkUser = await onAuthenticateUser();
+  // const checkUser = await onAuthenticateUser();
   // WIP: LS Template in Navbar.tsx.
 
   return (
