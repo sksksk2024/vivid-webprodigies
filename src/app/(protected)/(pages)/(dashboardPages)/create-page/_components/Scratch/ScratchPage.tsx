@@ -49,11 +49,11 @@ const ScratchPage = ({ onBack }: Props) => {
   };
 
   const handleAddCard = () => {
-    const newCard: OutlineCard = {
-      id: v4(),
-      title: editText || 'New Section',
-      order: outlines.length + 1,
-    };
+    // const newCard: OutlineCard = {
+    //   id: v4(),
+    //   title: editText || 'New Section',
+    //   order: outlines.length + 1,
+    // };
     setEditText('');
     // addOutline(newCard);
   };
