@@ -236,7 +236,7 @@ export const deleteAllProjects = async (projectIds: string[]) => {
       },
     });
 
-    if (projectsToDelete === 0) {
+    if (projectsToDelete.length === 0) {
       return { status: 404, error: 'No projects found for the given IDs.' };
     }
 
