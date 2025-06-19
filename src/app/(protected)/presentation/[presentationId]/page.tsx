@@ -40,6 +40,7 @@ const Page = () => {
         setProject(res.data);
         setSlides(JSON.parse(JSON.stringify(res.data.slides)));
       } catch (error) {
+        console.error('Error:', error);
         toast.error('Error', {
           description: 'An unexpected error occurred',
         });

@@ -1,4 +1,4 @@
-import { LayoutSlides } from '@/lib/types';
+// import { LayoutSlides } from '@/lib/types';
 import { cn } from '@/lib/utils';
 import React from 'react';
 

@@ -27,7 +27,7 @@ const CardList = ({
   editText,
   // addOutline,
   onEditChange,
-  onCardSelect,
+  // onCardSelect,
   onCardDoubleClick,
   setEditingCard,
   setEditText,

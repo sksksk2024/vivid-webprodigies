@@ -7,9 +7,7 @@ import CreatePage from './CreatePage/CreatePage';
 import CreativeAI from './GenerateAI/CreativeAI';
 import ScratchPage from './Scratch/ScratchPage';
 
-type Props = {};
-
-const RenderPage = (props: Props) => {
+const RenderPage = () => {
   const router = useRouter();
   const { page, setPage } = usePromptStore();
 

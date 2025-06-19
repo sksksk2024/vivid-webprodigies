@@ -37,6 +37,7 @@ type MasterRecursiveComponentProps = {
   index?: number;
 };
 
+// @typescript-eslint/no-unused-vars
 const ContentRenderer: React.FC<MasterRecursiveComponentProps> = React.memo(
   ({ content, onContentChange, slideId, index, isPreview, isEditable }) => {
     const handleChange = useCallback(

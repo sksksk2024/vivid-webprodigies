@@ -10,7 +10,7 @@ import {
 // Example fix for a variant object (in '@/lib/constants'):
 // visible: { y: 0, opacity: 1, transition: { type: 'spring', stiffness: 100 } }
 import { motion } from 'framer-motion';
-import React, { useEffect } from 'react';
+import React from 'react';
 import RecentPrompts from '../GenerateAI/RecentPrompts';
 import usePromptStore from '@/store/usePromptStore';
 
@@ -19,7 +19,10 @@ type Props = {
 };
 
 const CreatePage = ({ onSelectOption }: Props) => {
-  const { prompts, setPage } = usePromptStore();
+  const {
+    prompts,
+    //  setPage
+  } = usePromptStore();
 
   // useEffect(() => {
   //   setPage('create');

@@ -106,7 +106,8 @@ export const DraggableSlide: React.FC<DraggableSlideProps> = ({
   });
 
   // @typescript-eslint/no-unused-vars
-  const [_, drop] = useDrop({
+  // no _ below
+  const [, drop] = useDrop({
     accept: ['SLIDE', 'LAYOUT'],
     hover(item: { index: number; type: string }) {
       if (!ref.current || !isEditable) {
